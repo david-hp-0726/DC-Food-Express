@@ -32,6 +32,19 @@ public class EmployeeController {
     private EmployeeService employeeService;
     @Autowired
     private JwtProperties jwtProperties;
+    @GetMapping("/page")
+    public Result<PageResult> page(@ParameterObject EmployeePageQueryDTO employeePageQueryDTO) {
+        log.info("Querying employee data {}", employeePageQueryDTO);
+        PageResult pageResult = employeeService.pageQuery(employeePageQueryDTO);
+        return Result.success(pageResult);
+    }
+
+    @GetMapping("/{id}")
+    public Result<Employee> getById(@PathVariable Long id) {
+        Employee employee = employeeService.getById(id);
+        return Result.success(employee);
+    }
+
 
     /**
      * 登录
@@ -79,10 +92,15 @@ public class EmployeeController {
         return Result.success();
     }
 
-    @GetMapping("/page")
-    public Result<PageResult> page(@ParameterObject EmployeePageQueryDTO employeePageQueryDTO) {
-        log.info("Querying employee data {}", employeePageQueryDTO);
-        PageResult pageResult = employeeService.pageQuery(employeePageQueryDTO);
-        return Result.success(pageResult);
+    @PostMapping("/status/{status}")
+    public Result activateOrDeactivate(@PathVariable Short status, Long id) {
+        employeeService.activateOrDeactivate(status, id);
+        return Result.success();
+    }
+
+    @PutMapping
+    public Result update(@RequestBody EmployeeDTO employeeDTO) {
+        employeeService.update(employeeDTO);
+        return Result.success();
     }
 }
