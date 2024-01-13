@@ -67,17 +67,13 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employee;
     }
 
-    public void add(EmployeeDTO employeeDTO) {
+    public void insert(EmployeeDTO employeeDTO) {
         Employee employee = new Employee();
         BeanUtils.copyProperties(employeeDTO, employee);
 
         employee.setPassword(DigestUtils.md5DigestAsHex("123456".getBytes()));
         employee.setStatus(1);
-        employee.setCreateTime(LocalDateTime.now());
-        employee.setUpdateTime(LocalDateTime.now());
-        employee.setCreateUser(BaseContext.getCurrentId());
-        employee.setUpdateUser(BaseContext.getCurrentId());
-        employeeMapper.add(employee);
+        employeeMapper.insert(employee);
     }
 
     public PageResult pageQuery(EmployeePageQueryDTO employeePageQueryDTO) {
@@ -98,8 +94,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void update(EmployeeDTO employeeDTO) {
         Employee employee = new Employee();
         BeanUtils.copyProperties(employeeDTO, employee);
-        employee.setUpdateTime(LocalDateTime.now());
-        employee.setUpdateUser(BaseContext.getCurrentId());
         employeeMapper.update(employee);
     }
 }

@@ -11,7 +11,7 @@ public interface CategoryService {
 
     PageResult pageQuery(CategoryPageQueryDTO categoryPageQueryDTO);
 
-    void add(CategoryDTO categoryDTO);
+    void insert(CategoryDTO categoryDTO);
 
     void update(CategoryDTO categoryDTO);
 

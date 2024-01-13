@@ -88,7 +88,7 @@ public class EmployeeController {
 
     @PostMapping
     private Result add(@RequestBody @ParameterObject EmployeeDTO employeeDTO) {
-        employeeService.add(employeeDTO);
+        employeeService.insert(employeeDTO);
         return Result.success();
     }
 

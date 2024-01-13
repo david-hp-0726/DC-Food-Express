@@ -23,9 +23,9 @@
         </if>
     </select>
 
-    <insert id="add">
+    <insert id="insert">
         INSERT INTO category (type, name, sort, status, create_time, update_time, create_user, update_user)
-        VALUES (#{id}, #{name}, #{sort}, #{status}, #{createTime}, #{updateTime}, #{createUser}, #{updateUser})
+        VALUES (#{type}, #{name}, #{sort}, #{status}, #{createTime}, #{updateTime}, #{createUser}, #{updateUser})
     </insert>
 
     <update id="update" parameterType="com.dc.entity.Category">

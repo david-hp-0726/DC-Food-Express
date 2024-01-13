@@ -11,6 +11,12 @@ spring:
       url: jdbc:mysql://${dc.datasource.host}:${dc.datasource.port}/${dc.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
       username: ${dc.datasource.username}
       password: ${dc.datasource.password}
+  data:
+    redis:
+      host: ${dc.redis.host}
+      port: ${dc.redis.port}
+      password: ${dc.redis.password}
+      database: ${dc.redis.database}
 
 mybatis:
   #mapper配置文件
@@ -36,6 +42,11 @@ dc:
     admin-ttl: 7200000
     # 设置前端传递过来的令牌名称
     admin-token-name: token
+  aws:
+    accessKeyId: ${dc.aws.accessKeyId}
+    secretKeyId: ${dc.aws.secretKeyId}
+    bucketName: ${dc.aws.bucketName}
+    bucketRegion: ${dc.aws.bucketRegion}
 
 # springdoc-openapi项目配置
 springdoc:
@@ -52,5 +63,3 @@ springdoc:
 # knife4j的增强配置，不需要增强可以不配
 knife4j:
   enable: true
-  setting:
-    language: zh-CN
